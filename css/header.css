@@ -1,0 +1,76 @@
+
+.mztubiao{padding:28px 0;box-sizing:border-box;float:left;}
+.mztb_tu{width:125px;height:24px;}
+.tou{width:1240px;margin:0 auto;position:relative;
+  z-index:2;}
+.tou:after{display:block;clear:both;content:"";}
+.dinga{width:150px;}
+/* 导航栏 */
+.ding_ul{list-style:none;box-sizing:border-box;
+text-align:center;margin:0 auto;float:right;
+margin-top:10px;}
+.ding_ul>li{
+  float:left;width:90px;height:50px;
+  line-height:50px;
+}
+.ding_ul>li>a{
+  text-decoration:none;display:block;padding:10px 10px;box-sizing:border-box;color:#000;
+  
+}
+/* 右侧搜索框 */
+.sousuo{width:180px;height:30px;border:1px solid #d1d1d1;float:right;border-radius:16px;margin-top:20px;background:#fff;}
+.sousuo>a{display:block;float:right;margin-right:10px;}
+.sousuo>input{width:125px;height:20px;margin:2px 0 2px 14px;border:#000;}
+.sousuo img{width:13.5px;height:14.5px;padding-top:8px;}
+.wbjyc:before{display:table;content:"";}
+/* 用户头像以及下拉div */
+.yhtp_img{width:29px;cursor: pointer;}
+.yhtp{float:right;padding:20px 0 0 10px;
+}
+.yhtp_div{
+  background-color:white;
+  position:absolute;right:13px;
+  height:0px;
+  overflow:hidden;
+  transition:all .2s linear;
+}
+.yhtp_a{
+  display:block;
+  padding:10px;
+}
+.yhtp_a:hover{color:#00bcd4;}
+.yhtp:hover>.yhtp_div{height:170px;}
+
+
+
+.gouwuche{float:right;margin:20px 0 0 10px;}
+.gouwuche>a>img{width:29px;}
+.beijing_1{display:block;width:29px;height:29px;background:url(../img/图标/购物车.png) no-repeat center center;background-size:100%;}
+
+.qcfd:after{display:block;content:"";clear:both;}
+/* 激活后 */
+
+#jhh{border:1px solid #000;float:left;width:100%;
+height:0px;overflow:hidden;visibility:hidden;}
+
+.jihuo_1:hover{color:#00bcd4;}
+.appxiazai{
+  position:absolute;
+  top:60px;
+  left:0px;
+  width:1240px;
+   height:0px;
+   background:white;
+   overflow:hidden;
+}
+.ding_ul>li:hover>.appxiazai{
+  height:170px;transition:all .3s linear;
+}
+.a_div{width:110px;height:150px;display:inline-block;margin:0 6px;opacity:0.5}
+.a_div:hover{color:blue;opacity:1;}
+.ycbj{width:100px;height:100px;float:left;}
+.a_img{width:100px;height:100px;}
+.p_img{font-size:10px;margin-top:-30px !important;}
+
+#jhh:hover{border:1px solid #000;float:left;width:100%; height:100px;visibility:visible;}
+

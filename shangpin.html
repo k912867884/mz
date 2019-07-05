@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+</head>
+<body>
+   <div class="sp_content">
+      <!-- 左侧图片 -->
+      <div class="sp_left">
+         <div><a href="#">
+          <img class="max_img" src="./img/商品图片/商品1/maximg1.jpg">
+         </a></div>
+         <ul class="sp_ul">
+            <li><a href="#"><img src="./img//商品图片/商品1/minimg1.jpg"></a></li>
+            <li><a href="#"><img src="./img//商品图片/商品1/minimg1.jpg"></a></li>
+            <li><a href="#"><img src="./img//商品图片/商品1/minimg1.jpg"></a></li>
+            <li><a href="#"><img src="./img//商品图片/商品1/minimg1.jpg"></a></li>
+               
+         </ul>
+      </div>
+      <!-- 右侧商品 -->
+      <div class="sp_right">
+         <div>
+            <h1>魅族x16</h1>
+            <p>【限时3期免息】 高通骁龙855 | 4800W光学防抖 | 对称式AMOLED全面屏 | 极速屏下指纹 | 全功能NFC | 3600mAh大电池 | 7.6mm纤薄机身 | mEngine3.0触感引擎</p>
+         </div>
+      </div>
+   </div>
+   <script src="js/vue.js"></script>
+   <style>
+
+      /* 右侧商品详情 */
+      .sp_right{
+         width:640px;
+         float:right;
+         border:1px solid #000;
+      }
+
+
+
+      .sp_content{
+         width:1240px;
+         margin:0 auto;
+      }
+      /* 左边图片样式 */
+      .sp_left{    
+         width:560px;
+        
+         border:1px solid #000;         
+      }
+      .max_img{
+         width:560px;
+      }
+      /* 下边ul图片样式 */
+      .sp_ul{
+         list-style:none;
+      }
+      .sp_ul:after{
+         display:block;
+         content:"";
+         clear:both;
+      }
+      .sp_ul li{
+         float:left;
+         margin:0 24px;
+      }
+      .sp_ul li img{
+         width:80px;
+         height:80px
+      }
+   </style>
+</body>
+</html>

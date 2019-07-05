@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+   <link rel="stylesheet" href="./css/zhuce.css">
+</head>
+<body>
+         <!-- 头主体 -->
+ <div class="header_box">
+    <div class="header">
+        <a href="#">
+         <img class="header_img" src="./img/图标/魅族文字.png">
+       </a>
+  </div>
+</div>
+   <div class="zhuce" id="zhuce">
+  <div class="main">
+    <div class="zc_header">
+       <h1>注册<span class="sp_header">注册新的内容</span></h1>
+    </div>
+      <!-- 注册内容 -->
+      <div class="zhuce_body">
+         <div class="zhuce_box">
+            <div class="register_text"> 账号</div>
+            <input class="shuru_inp" type="text">
+            <span class="zhanghao_tishi">账号不能为空</span>
+         </div>
+         <div class="zhuce_box">
+           <div class="register_text">电子邮箱 </div>
+               <input class="shuru_inp" type="text">
+               <span class="zhanghao_tishi">电子邮箱不能为空</span>
+         </div>
+         <div class="zhuce_box">
+           <div class="register_text">密码</div>
+               <input class="shuru_inp" type="password">
+               <span class="zhanghao_tishi">密码不能为空</span>
+         </div>        
+         <div class="zhuce_box">
+           <div class="register_text">确认密码</div>
+               <input class="shuru_inp" type="password">
+               <span class="zhanghao_tishi">确认密码不能为空</span>
+         </div>   
+         <div class="zhuce_box">
+           <div class="register_text">联系电话</div>
+               <input class="shuru_inp" type="text">
+               <span class="zhanghao_tishi">联系电话不能为空</span>
+         </div> 
+         <div class="zhuce_box">
+             <div class="register_text"></div>
+             <input class="shuru_inp box" type="checkbox">
+            <span class="yanzheng"> 验证手机号("<b>经过验证的手机号可以用于登录或重置密码、修改密码</b>")</span>
+         </div> 
+         <div class="zhuce_box">
+               <div class="register_text">验证码</div>
+               <input class="shuru_inp shuru_yz" type="text">
+               <img class="yz_img" src="./img/图标/验证图片.jpg">
+               <span class="zhanghao_tishi">验证码不能为空</span>
+          </div> 
+          <div class="zhuce_box">
+               <div class="register_text"></div>
+               <input class="shuru_inp box" type="checkbox">
+              <span class="yanzheng"> * 我已阅读并同意华为公司用户注册协议和隐私声明</span>
+           </div>  
+           <input class="btn_button" type="button" value="注册">
+      </div>
+      </div>
+   </div>
+   <script src="js/vue.js"></script>
+   <script>
+      new Vue({
+         el:"#zhuce",
+         data:{
+            
+         }
+      })
+   </script>
+</body>
+</html>

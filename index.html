@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/index.css">
+<style>
+</style>
+
+ </head>
+ <body>
+<header id="header"></header>
+
+<script>
+	window.onload=function(){
+       var i=0;   //现在正在显示第几张，从0开始
+       var LIWIDTH=100;  //每个li的固定宽度
+       var DURATION=500;//每次轮播的时间
+       var LICOUNT=6;//li的总个数
+       var ulImgs=document.getElementById("ul-imgs");
+       var ulIdxs=document.getElementById("ul-idxs");
+       var lis=ulIdxs.children;
+
+      var btn_left=document.getElementById('btn-left');
+      var btn_right=document.getElementById('btn-right');
+      var canClick=true; //开关按钮，防止用户重复点击
+      btn_right.onclick=function(){
+			 //左移一个
+			 console.log(123);
+          move(1);
+      }
+      btn_left.onclick=function(){
+            move(-1);
+        }
+
+       //两个按钮共用的移动函数
+        function move(n){
+         if(canClick){
+             moveTo(i+n);
+             canClick=false;
+             //只有本地动画播放完，才能自动打开开关，点击按钮才有反应
+             setTimeout(function(){
+                 canClick=true;
+             },DURATION+100);
+         }
+        }
+         // 轮播核心函数
+     function moveTo(to){
+         if(to==undefined){
+             to=i+1;
+         }
+         if(i==0){
+             if(to>i){ //在第一张顺序向左移正常执行
+             ulImgs.className="transition";
+             }else{ //在第一张反向向右移再做改变瞬间将ul移到最后一张li(想看左边的图片)
+                 ulImgs.className="";
+                 ulImgs.style.marginLeft=-LIWIDTH*LICOUNT+"%";
+               //  console.log(ulImgs.style.marginLeft);
+                 setTimeout(function(){
+                    moveTo(LICOUNT-1);
+                 },100);
+                 return;
+             }
+         }
+         i=to;
+         ulImgs.style.marginLeft=-i*LIWIDTH+"%";
+
+         for(var li of lis){
+            li.className=""; 
+         }
+         if(i==LICOUNT){
+             i=0;
+             setTimeout(function(){
+            ulImgs.className="";
+            ulImgs.style.marginLeft=0
+             },DURATION);
+         }
+         lis[i].className="active";
+     }
+
+      var interval=3000;
+      var timer=setInterval(function(){
+          moveTo();
+      },3000);
+      var content=document.getElementById('content');
+      content.onmouseover=function(){
+        clearInterval(timer);
+      }
+      content.onmouseout=function(){
+        timer=setInterval(function(){
+              moveTo();
+          },3000);
+      }
+      
+            //手动轮播
+          //  var canClick=true;
+       ulIdxs.onclick=function(e){
+           if(canClick){
+               var li=e.target;
+               if(li.nodeName=="LI"&&li.className!=="active"){
+                   for(var i=0;i<lis.length;i++){
+                       if(lis[i]==li){
+                           break;
+                       }
+                   }
+               }
+               moveTo(i);
+               setTimeout(function(){
+                canClick=true;
+               },DURATION);
+           }
+		 }
+		}
+</script>
+
+<!--轮播图-->
+	<!-- <div class="lb">
+		<ul class="lb_ul">
+			<li class="lb_li1"><a href="#" class="lb_a"></a></li>
+			<li class="lb_li2"><a href="#" class="lb_a"></a></li>
+			<li class="lb_li3"><a href="#" class="lb_a"></a></li>
+			<li class="lb_li4"><a href="#" class="lb_a"></a></li>
+		</ul>
+		<ul class="index_ul">
+			<li class="white"></li>
+			<li></li>
+			<li></li>
+			<li></li>	
+		</ul>
+	</div> -->
+	<div id="content">
+		<ul id="ul-imgs">
+			 <li><a href="#"><img src="./img/lbtu_1.jpg" alt=""></a></li>
+			 <li><a href="#"><img src="./img/lbtu_2.jpg" alt=""></a></li>
+			 <li><a href="#"><img src="./img/lbtu_3.jpg" alt=""></a></li>
+			 <li><a href="#"><img src="./img/lbtu_4.jpg" alt=""></a></li>
+			 <li><a href="#"><img src="./img/lbtu_5.jpg" alt=""></a></li>
+			 <li><a href="#"><img src="./img/lbtu_6.jpg" alt=""></a></li>
+			 <li><a href="#"><img src="./img/lbtu_1.jpg" alt=""></a></li>
+		</ul>
+		<div class="arrow_left" id="btn-left"></div>
+		<div class="arrow_right" id="btn-right"></div>
+		<ul class="round" id="ul-idxs">
+			 <li class="active"></li>
+			 <li></li>
+			 <li></li>
+			 <li></li>
+			 <li></li>
+			 <li></li>
+		</ul>
+  </div>
+
+
+
+
+
+<!--ul-4个li-->
+	<ul class="my_ul1">
+		<li class="my_li1"><a href="#" class="my_lia">
+			<img src="./img/dhl_1.png" class="a_img">
+			<P>魅族X16S</P>
+			<P>低至1600</P>
+		</a></li>
+		<li class="my_li1"><a href="#" class="my_lia">
+			<img src="./img/dhl_1.png" class="a_img">
+			<P>魅族X16S</P>
+			<P>低至1600</P>
+		</a></li>
+		<li class="my_li1"><a href="#" class="my_lia">
+			<img src="./img/dhl_1.png" class="a_img">
+			<P>魅族X16S</P>
+			<P>低至1600</P>
+		</a></li>
+		<li class="my_li1"><a href="#" class="my_lia">
+			<img src="./img/dhl_1.png" class="a_img">
+			<P>魅族X16S</P>
+			<P>低至1600</P>
+		</a></li>
+	</ul>
+
+
+
+<!-- 手机设置长图 -->
+<div class="clear">
+	<a href="#" class="my_graph"></a>
+</div>
+  <div class="bg">
+		<div class="cent">
+	<!--手机部分-->
+	<hr>
+			
+<div id="f1">
+	<h2>魅族手机</h2>
+		<div class="box_1" id="p1">
+			<a :href="p1.href" class="box_a1">
+				<span class="box_sp1">
+					<span class="sp_1" v-text="p1.title"></span>
+					<span class="sp_2" v-text="p1.details"></span>
+					<span class="sp_3">￥{{p1.price.toFixed(2)}}</span>
+				</span>
+				<div class="tubiao">新品</div>
+				<img :src="p1.pic" class="box_img1">
+			</a>
+		</div>
+		<div class="box_1" id="p2">
+			<a :href="p2.href" class="box_a1">
+				<span class="box_sp1">
+					<span class="sp_1" v-text="p2.title"></span>
+					<span class="sp_2" v-text="p2.details"></span>
+					<span class="sp_3">￥{{p2.price.toFixed(2)}}</span>
+				</span>
+				<div class="tubiao">新品</div>
+				<img :src="p1.pic" class="box_img1">
+			</a> 
+		</div>
+				<!--手机2-->
+		<div class="box_2" id="p3">
+			 <a href="shangping.htm?lid=3" class="box_a2">
+					<div class="tubiao2">新品</div>
+				<img :src="p3.pic" class="box_img2">
+				<span class="sp2_1" v-text="p3.title"></span>
+					<span class="sp2_2" v-text="p3.details"></span>
+					<span class="sp2_3">￥{{p3.price.toFixed(2)}}</span>
+				</span>
+			</a>
+		</div>
+		<div class="box_2" id="p4">
+			  <a href="shangping.htm?lid=4" class="box_a2">
+					<div class="tubiao2">新品</div>
+				<img :src="p4.pic" class="box_img2">
+				<span class="sp2_1" v-text="p4.title"></span>
+					<span class="sp2_2" v-text="p4.details"></span>
+					<span class="sp2_3">￥{{p4.price.toFixed(2)}}</span>
+				</span>
+			</a> 
+		</div>
+		<div class="box_2" id="p5">
+				 <a href="shangping.html?lid=5" class="box_a2">
+					<div class="tubiao2">新品</div>
+				<img :src="p5.pic" class="box_img2">
+				<span class="sp2_1" v-text="p5.title"></span>
+					<span class="sp2_2" v-text="p5.details"></span>
+					<span class="sp2_3">￥{{p5.price.toFixed(2)}}</span>
+				</span>
+			</a> 
+		</div>
+		<div class="box_2" id="p6">
+				<a href="shangping.html?lid=6" class="box_a2">
+					<div class="tubiao2">新品</div>
+				<img :src="p6.pic" class="box_img2">
+				<span class="sp2_1" v-text="p6.title"></span>
+					<span class="sp2_2" v-text="p6.details"></span>
+					<span class="sp2_3">￥{{p6.price.toFixed(2)}}</span>
+				</span>
+			</a>
+		</div>
+		<div class="box_2" id="p7">
+				<a href="shangping.html?lid=7" class="box_a2">
+					<div class="tubiao2">新品</div>
+				<img :src="p7.pic" class="box_img2">
+				<span class="sp2_1" v-text="p7.title"></span>
+					<span class="sp2_2" v-text="p7.details"></span>
+					<span class="sp2_3">￥{{p7.price.toFixed(2)}}</span>
+				</span>
+			</a>
+		</div>
+		<div class="box_2" id="p8">
+				<a href="shangping.html?lid=8" class="box_a2">
+					<div class="tubiao2">新品</div>
+				<img src="./img/mzsj_8.png" class="box_img2">
+				<span class="sp2_1" v-text="p8.title"></span>
+					<span class="sp2_2" v-text="p8.details"></span>
+					<span class="sp2_3">￥{{p8.price.toFixed(2)}}</span>
+				</span>
+			</a>
+		</div>
+		<div class="box_2" id="p9">
+				<a href="shangping.html?lid=9" class="box_a2">
+					<div class="tubiao2">新品</div>
+				<img src="./img/mzsj_9.png" class="box_img2">
+				<span class="sp2_1" v-text="p9.title"></span>
+					<span class="sp2_2" v-text="p9.details"></span>
+					<span class="sp2_3">￥{{p9.price.toFixed(2)}}</span>
+				</span>
+			</a>
+		</div>
+		<div class="box_2" id="p10">
+				<a href="shangping.html?lid=10" class="box_a2">
+					<div class="tubiao2">新品</div>
+				<img src="./img/mzsj_10.png" class="box_img2">
+				<span class="sp2_1" v-text="p10.title"></span>
+					<span class="sp2_2" v-text="p10.details"></span>
+					<span class="sp2_3">￥{{p10.price.toFixed(2)}}</span>
+				</span>
+			</a>
+		</div>	
+	</div>	
+ </div>
+</div>
+<!-- 声学长图 -->
+<div class="clear">
+	<a href="#" class="my_graph2"></a>
+</div>
+
+<!--魅族声学-->
+		<hr>
+<div class="bg">
+	<div class="cent">
+
+	<!--耳机产品-->
+<div class="f">
+	<h2>魅族声学</h2>
+		<a href="#" class="box_a3 box_3">
+		<span class="box3_sp">
+			<h2 class="box3_h3">魅族EP2P耳机</h2>
+			<h4 class="box3_h5">Type-c接口，给你不一样的体验</h4>
+			<span class="sp_sp">￥99</span>
+		</span>
+		</a>
+
+ <div class="box_2"><a href="#" class="box_a2">
+		<div class="tubiao2">新品</div>
+		<img src="./img/ej_1.png" class="box_img2">
+		<span class="box_sp2">
+		<span class="sp2_1">魅族16XS</span>
+		<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+		<span class="sp2_3">￥1499</span>
+	</span>
+ </a></div>
+ <div class="box_2"><a href="#" class="box_a2">
+		<div class="tubiao2">新品</div>
+		<img src="./img/ej_2.png" class="box_img2">
+		<span class="box_sp2">
+		<span class="sp2_1">魅族16XS</span>
+		<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+		<span class="sp2_3">￥1499</span>
+	</span>
+ </a></div>
+ <div class="box_2"><a href="#" class="box_a2">
+		<div class="tubiao2">新品</div>
+		<img src="./img/ej_3.png" class="box_img2">
+		<span class="box_sp2">
+		<span class="sp2_1">魅族16XS</span>
+		<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+		<span class="sp2_3">￥1499</span>
+	</span>
+ </a></div>
+
+ <!--声学第二行-->
+
+		<a href="#" class="box_a3 box_3_2">
+		<span class="box3_sp">
+			<h2 class="box3_h3">魅族 HIFI 解码耳放</h2>
+			<h4 class="box3_h5">高性能DAC芯片</h4>
+			<span class="sp_sp">￥169</span>
+		</span>
+		</a>
+
+ <div class="box_2"><a href="#" class="box_a2">
+		<div class="tubiao2">新品</div>
+		<img src="./img/ej_4.png" class="box_img2">
+		<span class="box_sp2">
+		<span class="sp2_1">魅族16XS</span>
+		<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+		<span class="sp2_3">￥1499</span>
+	</span>
+ </a></div>
+ <div class="box_2"><a href="#" class="box_a2">
+		<div class="tubiao2">新品</div>
+		<img src="./img/ej_5.png" class="box_img2">
+		<span class="box_sp2">
+		<span class="sp2_1">魅族16XS</span>
+		<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+		<span class="sp2_3">￥1499</span>
+	</span>
+ </a></div>
+ <div class="box_2"><a href="#" class="box_a2">
+		<div class="tubiao2">新品</div>
+		<img src="./img/ej_6.png" class="box_img2">
+		<span class="box_sp2">
+		<span class="sp2_1">魅族16XS</span>
+		<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+		<span class="sp2_3">￥1499</span>
+	</span>
+ </a></div>
+ <!-- 声学第三行 -->
+
+		<a href="#" class="box_a3 box_3_3">
+		<span class="box3_sp">
+			<h2 class="box3_h3">魅族 POP2 真无线蓝牙耳机</h2>
+			<h4 class="box3_h5">蓝牙5.0 超长续航</h4>
+			<span class="sp_sp">￥399</span>
+		</span>
+		</a>
+ <div class="box_2"><a href="#" class="box_a2">
+		<div class="tubiao2">新品</div>
+		<img src="./img/ej_7.png" class="box_img2">
+		<span class="box_sp2">
+		<span class="sp2_1">魅族16XS</span>
+		<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+		<span class="sp2_3">￥1499</span>
+	</span>
+ </a></div>
+ <div class="box_2"><a href="#" class="box_a2">
+		<div class="tubiao2">新品</div>
+		<img src="./img/ej_8.png" class="box_img2">
+		<span class="box_sp2">
+		<span class="sp2_1">魅族16XS</span>
+		<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+		<span class="sp2_3">￥1499</span>
+	</span>
+ </a></div>
+ <div class="box_2"><a href="#" class="box_a2">
+		<div class="tubiao2">新品</div>
+		<img src="./img/ej_9.png" class="box_img2">
+		<span class="box_sp2">
+		<span class="sp2_1">魅族16XS</span>
+		<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+		<span class="sp2_3">￥1499</span>
+	</span>
+ </a></div>
+ </div>
+  </div>
+ </div>
+ <div class="changtu">
+	<a href="#" class="my_graph3"></a>
+ </div>
+
+<!-- 智能配件 -->
+<div class="bg">
+  <div class="cent">
+<div class="f">
+	<h2>智能配件</h2>
+	<!-- 智能第一行 -->
+	<a href="#" class="box_a3 box_4_1">
+		<span class="box3_sp">
+			<h2 class="box3_h3">魅族 HIFI 解码耳放</h2>
+			<h4 class="box3_h5">高性能DAC芯片</h4>
+			<span class="sp_sp">￥169</span>
+		</span>
+	</a>
+	<div class="box_2"><a href="#" class="box_a2">
+			<div class="tubiao2">新品</div>
+			<img src="./img/mzzn_2.png" class="box_img2">
+			<span class="box_sp2">
+			<span class="sp2_1">魅族16XS</span>
+			<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+			<span class="sp2_3">￥1499</span>
+		</span>
+	</a></div>
+	<div class="box_2"><a href="#" class="box_a2">
+			<div class="tubiao2">新品</div>
+			<img src="./img/mzzn_3.png" class="box_img2">
+			<span class="box_sp2">
+			<span class="sp2_1">魅族16XS</span>
+			<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+			<span class="sp2_3">￥1499</span>
+		</span>
+	</a></div>
+	<div class="box_2"><a href="#" class="box_a2">
+			<div class="tubiao2">新品</div>
+			<img src="./img/mzzn_4.png" class="box_img2">
+			<span class="box_sp2">
+			<span class="sp2_1">魅族16XS</span>
+			<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+			<span class="sp2_3">￥1499</span>
+		</span>
+	</a></div>
+	<!-- 智能配件第二行 -->
+	<a href="#" class="box_a3 box_4_2">
+			<span class="box3_sp">
+				<h2 class="box3_h3">魅族 HIFI 解码耳放</h2>
+				<h4 class="box3_h5">高性能DAC芯片</h4>
+				<span class="sp_sp">￥169</span>
+			</span>
+		</a>
+		<div class="box_2"><a href="#" class="box_a2">
+				<div class="tubiao2">新品</div>
+				<img src="./img/mzzn_6.png" class="box_img2">
+				<span class="box_sp2">
+				<span class="sp2_1">魅族16XS</span>
+				<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+				<span class="sp2_3">￥1499</span>
+			</span>
+		</a></div>
+		<div class="box_2"><a href="#" class="box_a2">
+				<div class="tubiao2">新品</div>
+				<img src="./img/mzzn_7.png" class="box_img2">
+				<span class="box_sp2">
+				<span class="sp2_1">魅族16XS</span>
+				<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+				<span class="sp2_3">￥1499</span>
+			</span>
+		</a></div>
+		<div class="box_2"><a href="#" class="box_a2">
+				<div class="tubiao2">新品</div>
+				<img src="./img/mzzn_8.png" class="box_img2">
+				<span class="box_sp2">
+				<span class="sp2_1">魅族16XS</span>
+				<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+				<span class="sp2_3">￥1499</span>
+			</span>
+		</a></div>
+	<!-- 智能配件第三行 -->
+	<a href="#" class="box_a3 box_4_3">
+			<span class="box3_sp">
+				<h2 class="box3_h3">魅族 HIFI 解码耳放</h2>
+				<h4 class="box3_h5">高性能DAC芯片</h4>
+				<span class="sp_sp">￥169</span>
+			</span>
+		</a>
+		<div class="box_2"><a href="#" class="box_a2">
+				<div class="tubiao2">新品</div>
+				<img src="./img/mzzn_10.png" class="box_img2">
+				<span class="box_sp2">
+				<span class="sp2_1">魅族16XS</span>
+				<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+				<span class="sp2_3">￥1499</span>
+			</span>
+		</a></div>
+		<div class="box_2"><a href="#" class="box_a2">
+				<div class="tubiao2">新品</div>
+				<img src="./img/mzzn_11.png" class="box_img2">
+				<span class="box_sp2">
+				<span class="sp2_1">魅族16XS</span>
+				<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+				<span class="sp2_3">￥1499</span>
+			</span>
+		</a></div>
+		<div class="box_2"><a href="#" class="box_a2">
+				<div class="tubiao2">新品</div>
+				<img src="./img/mzzn_12.png" class="box_img2">
+				<span class="box_sp2">
+				<span class="sp2_1">魅族16XS</span>
+				<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+				<span class="sp2_3">￥1499</span>
+			</span>
+		</a></div>
+</div>
+  </div>
+</div>
+
+
+<!-- 生活周边 -->
+<div class="changtu">
+	<a href="#" class="my_graph4"></a>
+ </div>
+<!-- 主要内容 -->
+<div class="bg">
+  <div class="cent">
+<div class="f">
+		<h2>生活周边</h2>
+	<!-- 生活周边第一行 -->
+	<a href="#" class="box_a3 box_5_1">
+			<span class="box3_sp">
+				<h2 class="box3_h3">魅族 HIFI 解码耳放</h2>
+				<h4 class="box3_h5">高性能DAC芯片</h4>
+				<span class="sp_sp">￥169</span>
+			</span>
+		</a>
+		<div class="box_2"><a href="#" class="box_a2">
+				<div class="tubiao2">新品</div>
+				<img src="./img/mzzb_2.png" class="box_img2">
+				<span class="box_sp2">
+				<span class="sp2_1">魅族16XS</span>
+				<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+				<span class="sp2_3">￥1499</span>
+			</span>
+		</a></div>
+		<div class="box_2"><a href="#" class="box_a2">
+				<div class="tubiao2">新品</div>
+				<img src="./img/mzzb_3.png" class="box_img2">
+				<span class="box_sp2">
+				<span class="sp2_1">魅族16XS</span>
+				<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+				<span class="sp2_3">￥1499</span>
+			</span>
+		</a></div>
+		<div class="box_2"><a href="#" class="box_a2">
+				<div class="tubiao2">新品</div>
+				<img src="./img/mzzb_4.png" class="box_img2">
+				<span class="box_sp2">
+				<span class="sp2_1">魅族16XS</span>
+				<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+				<span class="sp2_3">￥1499</span>
+			</span>
+		</a></div>
+		<!-- 生活周边第二行 -->
+		<a href="#" class="box_a3 box_5_2">
+				<span class="box3_sp">
+					<h2 class="box3_h3">魅族 HIFI 解码耳放</h2>
+					<h4 class="box3_h5">高性能DAC芯片</h4>
+					<span class="sp_sp">￥169</span>
+				</span>
+			</a>
+			<div class="box_2"><a href="#" class="box_a2">
+					<div class="tubiao2">新品</div>
+					<img src="./img/mzzb_6.png" class="box_img2">
+					<span class="box_sp2">
+					<span class="sp2_1">魅族16XS</span>
+					<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+					<span class="sp2_3">￥1499</span>
+				</span>
+			</a></div>
+			<div class="box_2"><a href="#" class="box_a2">
+					<div class="tubiao2">新品</div>
+					<img src="./img/mzzb_7.png" class="box_img2">
+					<span class="box_sp2">
+					<span class="sp2_1">魅族16XS</span>
+					<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+					<span class="sp2_3">￥1499</span>
+				</span>
+			</a></div>
+			<div class="box_2"><a href="#" class="box_a2">
+					<div class="tubiao2">新品</div>
+					<img src="./img/mzzb_8.png" class="box_img2">
+					<span class="box_sp2"></span>
+					<span class="sp2_1">魅族16XS</span>
+					<span class="sp2_2">4800W AI三摄 | 屏幕下指纹</span>
+					<span class="sp2_3">￥1499</span>
+				</span>
+			</a></div>
+
+</div>
+
+
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+	<footer id="footer"></footer>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script src="js/vue.js"></script>
+	<script src="js/header.js"></script>	
+	<script src="js/footer.js"></script> 
+	<script src="js/index.js"></script>
+ </body>
+</html>
